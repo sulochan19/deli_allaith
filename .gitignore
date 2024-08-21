@@ -1,0 +1,8 @@
+venv/*
+myvenv/*
+.idea/*
+deli_allaith/__pycache__/
+.vscode/
+reflex/__pycache__/
+db.sqlite3
+.env

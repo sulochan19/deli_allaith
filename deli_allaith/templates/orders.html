@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<h1>Orders</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- cart -->
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<div class="cart-table-wrap" style="margin-bottom: 50px;">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th >Timestamp</th>
+									<th class="product-image">Product Image</th>
+									<th class="product-name">Name</th>
+									<th class="product-price">Price</th>
+									<th class="product-total">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for order_dict in orders_with_contents %}
+								<tr class="table-body-row">
+									<td>{{ order_dict.order.order_timestamp }}</td>
+									{% for content in order_dict.contents %}
+									<td class="product-image"><img src="/media/{{content.food.image}}" alt=""></td>
+									<td class="product-name">{{ content.food.name }}</td>
+									{% endfor %}
+									</td>
+
+									<td class="product-price">AED {{ order_dict.order.total_amount }}</td>
+									<td>
+										{% if order_dict.order.delivery_status == 'Completed' %}
+											<span class="label label-success">Delivered</span>
+										{% else %}
+											<span class="label label-danger">Pending</span>
+										{% endif %}
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart -->
+	{% endblock %}
