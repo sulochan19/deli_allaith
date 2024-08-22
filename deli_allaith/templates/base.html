@@ -70,13 +70,13 @@
 								<li><a><i class="fas fa-user"></i></a>
 									<ul class="sub-menu">
 										<li>{{user.email}}</li>
-										<li><a href="accounts/logout">Logout</a></li>
+										<li><a href={% url 'account_logout' %}>Logout</a></li>
 									</ul>
 								</li>
 								{% endif %}
 								{% if user.is_authenticated %}
 								{% else %}
-								<li><a href={% url 'account_logout' %}>Login</a>
+								<li><a href={% url 'account_login' %}>Login</a>
 								</li>
 								{% endif %}
 							</ul>
